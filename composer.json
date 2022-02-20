@@ -1,0 +1,49 @@
+{
+    "name": "semaio/request-id-bundle",
+    "description": "This bundle adds request IDs to the request and response in your Symfony application.",
+    "keywords": [
+        "symfony",
+        "request",
+        "request id"
+    ],
+    "type": "symfony-bundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Rouven Alexander Rieker",
+            "email": "therouv@googlemail.com"
+        }
+    ],
+    "require": {
+        "php": "^8.0",
+        "ramsey/uuid": "^4.0",
+        "symfony/framework-bundle": "^6.0"
+    },
+    "require-dev": {
+        "phpstan/phpstan": "^1.4",
+        "phpunit/phpunit": "^9.5",
+        "symfony/browser-kit": "^6.0",
+        "symfony/css-selector": "^6.0",
+        "symfony/monolog-bridge": "^6.0",
+        "symfony/monolog-bundle": "^3.0",
+        "symfony/phpunit-bridge": "^6.0",
+        "symfony/templating": "^6.0",
+        "symfony/twig-bundle": "^6.0",
+        "symfony/yaml": "^6.0",
+        "symplify/easy-coding-standard": "^10.0",
+        "twig/twig": "^3.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Semaio\\RequestId\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Semaio\\RequestId\\Test\\": "tests/"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    }
+}

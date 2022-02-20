@@ -1,0 +1,33 @@
+parameters:
+    secret: dev
+    locale: en
+
+framework:
+    test: ~
+    secret: "%secret%"
+    router:
+        resource: "%kernel.project_dir%/config/routing.yml"
+        strict_requirements: "%kernel.debug%"
+    default_locale: "%locale%"
+
+twig:
+    strict_variables: "%kernel.debug%"
+    paths:
+        "%kernel.project_dir%/templates": requestid
+
+services:
+    log.formatter:
+        class: Monolog\Formatter\LineFormatter
+        arguments:
+            - "[%%level_name%% - %%extra.request_id%%] %%message%%"
+    log.memory_handler:
+        public: true
+        class: Semaio\RequestId\Test\Functional\Stubs\MemoryHandler
+        calls:
+            - [ setFormatter, [ "@log.formatter" ] ]
+
+monolog:
+    handlers:
+        main:
+            type: service
+            id: log.memory_handler

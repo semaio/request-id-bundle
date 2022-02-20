@@ -1,0 +1,8 @@
+parameters:
+    tmpDir: ./build/cache/phpstan
+    level: max
+    paths:
+        - ./src
+    ignoreErrors:
+        - '#Method Semaio\\RequestId\\DependencyInjection\\SemaioRequestIdExtension::loadInternal\(\) has parameter \$mergedConfig with no value type specified in iterable type array.#'
+        - '#Call to an undefined method Symfony\\Component\\Config\\Definition\\Builder\\NodeDefinition::children\(\).#'
