@@ -11,25 +11,19 @@ declare(strict_types=1);
 
 namespace Semaio\RequestId\Extension\Monolog;
 
+use Monolog\LogRecord;
 use Semaio\RequestId\Provider\ProviderInterface;
 
-/**
- * @phpstan-import-type Record from \Monolog\Logger
- */
 final class RequestIdProcessor
 {
     public function __construct(private ProviderInterface $provider)
     {
     }
 
-    /**
-     * @phpstan-param Record $record
-     * @phpstan-return Record
-     */
-    public function __invoke(array $record): array
+    public function __invoke(LogRecord $record): LogRecord
     {
         if ($requestId = $this->provider->getRequestId()) {
-            $record['extra']['request_id'] = $requestId;
+            $record['extra']['request_id'] = $requestId; // @phpstan-ignore-line
         }
 
         return $record;

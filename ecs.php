@@ -18,54 +18,53 @@ use PhpCsFixer\Fixer\PhpUnit\PhpUnitTestCaseStaticMethodCallsFixer;
 use PhpCsFixer\Fixer\ReturnNotation\NoUselessReturnFixer;
 use PhpCsFixer\Fixer\Strict\DeclareStrictTypesFixer;
 use PhpCsFixer\Fixer\Whitespace\CompactNullableTypehintFixer;
-use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
-use Symplify\EasyCodingStandard\ValueObject\Option;
+use Symplify\EasyCodingStandard\Config\ECSConfig;
 use Symplify\EasyCodingStandard\ValueObject\Set\SetList;
 
-return static function (ContainerConfigurator $containerConfigurator): void {
-    $containerConfigurator->import(SetList::PSR_12);
-    $containerConfigurator->import(SetList::SYMFONY);
-    $containerConfigurator->import(SetList::ARRAY);
-    $containerConfigurator->import(SetList::CONTROL_STRUCTURES);
-    $containerConfigurator->import(SetList::STRICT);
-
-    $services = $containerConfigurator->services();
-    $services->set(ArraySyntaxFixer::class)
-        ->call('configure', [[
-            'syntax' => 'short',
-        ]]);
-    $services->set(CompactNullableTypehintFixer::class);
-    $services->set(ConcatSpaceFixer::class);
-    $services->set(DeclareStrictTypesFixer::class);
-    $services->set(NoSuperfluousPhpdocTagsFixer::class)
-        ->call('configure', [[
-            'allow_mixed' => true,
-        ]]);
-    $services->set(NoUselessReturnFixer::class);
-    $services->set(PhpdocOrderFixer::class);
-    $services->set(PhpUnitConstructFixer::class);
-    $services->set(PhpUnitDedicateAssertFixer::class)->call('configure', [[
-        'target' => 'newest',
-    ]]);
-    $services->set(PhpUnitDedicateAssertInternalTypeFixer::class);
-    $services->set(PhpUnitMockFixer::class);
-    $services->set(PhpUnitMockShortWillReturnFixer::class);
-    $services->set(PhpUnitTestCaseStaticMethodCallsFixer::class);
-    $services->set(VoidReturnFixer::class);
-
-    // Disable sniffs
-    $services->remove(AssignmentInConditionSniff::class);
-
-    $parameters = $containerConfigurator->parameters();
-    $parameters->set(Option::PATHS, [
-        __DIR__.'/src',
-        __DIR__.'/tests',
+return function (ECSConfig $ecsConfig): void {
+    $ecsConfig->paths([
+        __DIR__ . '/src',
     ]);
-    $parameters->set(Option::SKIP, [
-        __DIR__.'/tests/Functional/app',
 
+    $ecsConfig->sets([
+        SetList::PSR_12,
+        SetList::CLEAN_CODE,
+        SetList::ARRAY,
+        SetList::CONTROL_STRUCTURES,
+        SetList::STRICT,
+    ]);
+
+    $ecsConfig->rules([
+        CompactNullableTypehintFixer::class,
+        ConcatSpaceFixer::class,
+        DeclareStrictTypesFixer::class,
+        NoUselessReturnFixer::class,
+        PhpdocOrderFixer::class,
+        PhpUnitConstructFixer::class,
+        PhpUnitDedicateAssertInternalTypeFixer::class,
+        PhpUnitMockFixer::class,
+        PhpUnitMockShortWillReturnFixer::class,
+        PhpUnitTestCaseStaticMethodCallsFixer::class,
+        VoidReturnFixer::class,
+    ]);
+
+    $ecsConfig->ruleWithConfiguration(ArraySyntaxFixer::class, [
+        'syntax' => 'short'
+    ]);
+
+    $ecsConfig->ruleWithConfiguration(NoSuperfluousPhpdocTagsFixer::class, [
+        'allow_mixed' => true
+    ]);
+
+    $ecsConfig->ruleWithConfiguration(PhpUnitDedicateAssertFixer::class, [
+        'target' => 'newest',
+    ]);
+
+    $ecsConfig->skip([
+        __DIR__ . '/tests/Functional/app',
+        AssignmentInConditionSniff::class,
         PhpUnitMethodCasingFixer::class => [
-            __DIR__.'/tests',
+            __DIR__ . '/tests',
         ],
     ]);
 };

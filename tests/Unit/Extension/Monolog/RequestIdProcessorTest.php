@@ -4,6 +4,10 @@ declare(strict_types=1);
 
 namespace Semaio\RequestId\Test\Unit\Extension\Monolog;
 
+use Monolog\DateTimeImmutable;
+use Monolog\Level;
+use Monolog\Logger;
+use Monolog\LogRecord;
 use PHPUnit\Framework\TestCase;
 use Semaio\RequestId\Extension\Monolog\RequestIdProcessor;
 use Semaio\RequestId\Provider\ProviderInterface;
@@ -26,9 +30,13 @@ class RequestIdProcessorTest extends TestCase
     {
         $this->provider->expects(static::once())->method('getRequestId')->willReturn('testRequestId');
 
-        $record = call_user_func($this->processor, [
-            'extra' => [],
-        ]);
+        $record = call_user_func($this->processor, new LogRecord(
+            datetime: new DateTimeImmutable(true),
+            channel: 'test',
+            level: Logger::toMonologLevel(Level::Debug),
+            message: 'test',
+            extra: []
+        ));
 
         static::assertArrayHasKey('request_id', $record['extra']);
         static::assertEquals('testRequestId', $record['extra']['request_id']);
@@ -41,9 +49,13 @@ class RequestIdProcessorTest extends TestCase
     {
         $this->provider->expects(static::once())->method('getRequestId')->willReturn(null);
 
-        $record = call_user_func($this->processor, [
-            'extra' => [],
-        ]);
+        $record = call_user_func($this->processor, new LogRecord(
+            datetime: new DateTimeImmutable(true),
+            channel: 'test',
+            level: Logger::toMonologLevel(Level::Debug),
+            message: 'test',
+            extra: []
+        ));
 
         static::assertArrayNotHasKey('request_id', $record['extra']);
     }

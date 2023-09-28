@@ -5,6 +5,7 @@ parameters:
 framework:
     test: ~
     secret: "%secret%"
+    http_method_override: false
     router:
         resource: "%kernel.project_dir%/config/routing.yml"
         strict_requirements: "%kernel.debug%"
