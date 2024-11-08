@@ -13,6 +13,4 @@ namespace Semaio\RequestId;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-final class SemaioRequestIdBundle extends Bundle
-{
-}
+final class SemaioRequestIdBundle extends Bundle {}

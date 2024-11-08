@@ -46,8 +46,7 @@ final class RequestIdListener implements EventSubscriberInterface
          * The header to inspect for the incoming request ID.
          */
         private string $requestHeader
-    ) {
-    }
+    ) {}
 
     /**
      * {@inheritdoc}

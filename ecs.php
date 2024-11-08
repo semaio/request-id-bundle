@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use PHP_CodeSniffer\Standards\Generic\Sniffs\CodeAnalysis\AssignmentInConditionSniff;
 use PhpCsFixer\Fixer\ArrayNotation\ArraySyntaxFixer;
+use PhpCsFixer\Fixer\Basic\SingleLineEmptyBodyFixer;
 use PhpCsFixer\Fixer\FunctionNotation\VoidReturnFixer;
 use PhpCsFixer\Fixer\Operator\ConcatSpaceFixer;
 use PhpCsFixer\Fixer\Phpdoc\NoSuperfluousPhpdocTagsFixer;
@@ -45,6 +46,7 @@ return function (ECSConfig $ecsConfig): void {
         PhpUnitMockFixer::class,
         PhpUnitMockShortWillReturnFixer::class,
         PhpUnitTestCaseStaticMethodCallsFixer::class,
+        SingleLineEmptyBodyFixer::class,
         VoidReturnFixer::class,
     ]);
 

@@ -17,9 +17,7 @@ use Twig\TwigFunction;
 
 final class RequestIdExtension extends AbstractExtension
 {
-    public function __construct(private ProviderInterface $provider)
-    {
-    }
+    public function __construct(private ProviderInterface $provider) {}
 
     /**
      * {@inheritdoc}

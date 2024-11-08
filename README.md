@@ -12,8 +12,8 @@ The request ID bundle can be installed at any point during a project's lifecycle
 
 ### Requirements
 
-* PHP 8.0
-* Symfony 6.0
+* PHP 8.2 / PHP 8.3
+* Symfony 7.0
 
 ### Install the bundle
 
@@ -77,11 +77,11 @@ semaio_request_id:
             # Defaults to `RamseyUuid4Generator`
             generator_service: ~
 
-        # Additional configuration for `PhpUniqidGenerator`. 
+        # Additional configuration for `PhpUniqidGenerator`.
         # See http://php.net/manual/en/function.uniqid.php for more information about PHP's uniqid function parameters.
         phpuniqid:
             prefix: ''
-            more_entropy: false 
+            more_entropy: false
 ```
 
 ## How it works
@@ -185,7 +185,7 @@ Here's an example of a template.
     <title>Hello World!</title>
 </head>
 <body>
-    <h1>{{ request_id() }}</h1>
+<h1>{{ request_id() }}</h1>
 </body>
 </html>
 ```

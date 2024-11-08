@@ -15,9 +15,7 @@ use function md5;
 
 final class Md5Generator implements GeneratorInterface
 {
-    public function __construct(private GeneratorInterface $generator)
-    {
-    }
+    public function __construct(private GeneratorInterface $generator) {}
 
     /**
      * {@inheritdoc}

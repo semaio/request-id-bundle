@@ -9,7 +9,7 @@ to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ### Changed
 
-- Add support for Syfony 7.x
+- Add support for Symfony 7.x
 
 ## 1.1.0 - 2023-09-28
 

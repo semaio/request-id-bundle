@@ -15,9 +15,7 @@ use Ramsey\Uuid\UuidFactoryInterface;
 
 final class RamseyUuid4Generator implements GeneratorInterface
 {
-    public function __construct(private UuidFactoryInterface $factory)
-    {
-    }
+    public function __construct(private UuidFactoryInterface $factory) {}
 
     /**
      * {@inheritdoc}

@@ -18,9 +18,7 @@ final class PhpUniqidGenerator implements GeneratorInterface
     /**
      * @see http://php.net/manual/en/function.uniqid.php
      */
-    public function __construct(private string $prefix = '', private bool $moreEntropy = false)
-    {
-    }
+    public function __construct(private string $prefix = '', private bool $moreEntropy = false) {}
 
     /**
      * {@inheritdoc}

@@ -16,9 +16,7 @@ use Semaio\RequestId\Provider\ProviderInterface;
 
 final class RequestIdProcessor
 {
-    public function __construct(private ProviderInterface $provider)
-    {
-    }
+    public function __construct(private ProviderInterface $provider) {}
 
     public function __invoke(LogRecord $record): LogRecord
     {
