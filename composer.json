@@ -28,7 +28,6 @@
         "symfony/monolog-bridge": "^7.0",
         "symfony/monolog-bundle": "^3.0",
         "symfony/phpunit-bridge": "^7.0",
-        "symfony/templating": "^7.0",
         "symfony/twig-bundle": "^7.0",
         "symfony/yaml": "^7.0",
         "symplify/easy-coding-standard": "^10.0",
